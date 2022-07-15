@@ -1,5 +1,5 @@
 const {Model, DataTypes} = require("sequelize");
-const db = require("../config/connection");
+const sequelize = require("../config/connection");
 
 class Comment extends Model {}
 
@@ -12,7 +12,7 @@ Comment.init(
             autoIncrement: true
         },
         comment_text: {
-            type: DataTypes.String,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
@@ -34,7 +34,7 @@ Comment.init(
         }
     },
     {
-        db,
+        sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,

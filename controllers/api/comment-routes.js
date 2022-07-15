@@ -14,17 +14,17 @@ router.get("/:id", (req, res) =>{
 })
 
 //POST new comment for authed user
-router.post("/", withAuth, (req, res) => {
+router.post("/", auth, (req, res) => {
 
 })
 
 //PUT existing comment for authed user
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", auth, (req, res) => {
 
 });
 
 //DELETE existing comment for authed user
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id", auth, (req, res) => {
 
 });
 
