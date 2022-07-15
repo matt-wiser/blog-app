@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     .then(userRow => res.json(userRow))
     .catch(err => {
         res.status(500).json(err);
-    })
+    });
 });
 
 //GET a single user
@@ -60,12 +60,12 @@ router.post("/", (req, res) => {
             req.session.username = userRow.username;
             req.session.loggedIn = true;
 
-            res.json(userRow);
+            res.json(userRow, {message: "Successfully logged in!"});
         });
     })
     .catch(err => {
         res.status(500).json(err);
-    })
+    });
 });
 
 //PUT to update individual user
@@ -148,7 +148,13 @@ router.post("/login", (req, res) => {
 
 //POST request for logout
 router.post("/logout", (req, res) => {
-    
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        })
+    } else {
+        res.status(404).end();
+    }
 });
 
 module.exports = router;
