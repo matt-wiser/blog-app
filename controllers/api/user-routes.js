@@ -74,7 +74,14 @@ router.put("/:id", (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
-    })
+    },
+    {
+        individualHooks:true,
+        where: {
+            id: req.params.id
+        }
+    }
+    )
     .then(userRow => {
         if (!userRow[0]) {
             res.status(404).json({message: "No user found with that id!"});
