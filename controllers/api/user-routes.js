@@ -60,7 +60,7 @@ router.post("/", (req, res) => {
             req.session.username = userRow.username;
             req.session.loggedIn = true;
 
-            res.json(userRow, {message: "Successfully logged in!"});
+            res.json(userRow);
         });
     })
     .catch(err => {
@@ -137,7 +137,7 @@ router.post("/login", (req, res) => {
                 req.session.username = userRow.username;
                 req.session.loggedIn = true;
 
-                res.json({user: userRow, message:"Successfully logged in!"});
+                res.json(userRow);
             })
         }     
     })
